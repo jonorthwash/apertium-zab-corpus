@@ -60,5 +60,5 @@ echo "        \emph{Blal xte Tiu Pamyël} 3-4 & Dictionary & $Dict36toks & $(pri
 echo "        Felipe H. Lopez poetry & Simple & $FHLtoks & $(printf %.2f $FHLcov) \\\\"
 echo "        Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
 echo "         & Dictionary & $DictTltoks & $(printf %.2f $DictTlcov) \\\\"
-echo "        Ticha post 2020-07-31 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
+echo "        Ticha post 2020-07-17 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
 echo "        SJGZ Bible & SJGZ & $bibleSJGZtoks & $(printf %.2f $bibleSJGZcov) \\\\"
