@@ -9,6 +9,9 @@ cat FHL-poetry/*.txt > FHL-poetry/FHL-poetry.all.txt
 cat Tlalocan/*@Simp* > Tlalocan/Tlalocan@Simp.all.txt
 cat Tlalocan/*@Dict* > Tlalocan/Tlalocan@Dict.all.txt
 
+rm ALL.txt
+cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-6.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt > ALL.txt
+
 coverage-hfst BxTP/BxTP@Simp.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Dict.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Simp.3-6.txt ../apertium-zab/zab.automorf.hfst
@@ -18,6 +21,7 @@ coverage-hfst Tlalocan/Tlalocan@Simp.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst ALL.txt ../apertium-zab/zab.automorf.hfst
 
 Simp12line=$(grep 'BxTP@Simp.1-2.txt' history.log | tail -n1)
 Dict12line=$(grep 'BxTP@Dict.1-2.txt' history.log | tail -n1)
@@ -28,6 +32,7 @@ SimpTlalocan=$(grep 'Tlalocan@Simp.all.txt' history.log | tail -n1)
 DictTlalocan=$(grep 'Tlalocan@Dict.all.txt' history.log | tail -n1)
 bibleSJGZ=$(grep 'SJGZ.bible.txt' history.log | tail -n1)
 TichaPost=$(grep '2020-07-17.txt' history.log | tail -n1)
+All=$(grep 'ALL.txt' history.log | tail -n1)
 
 Simp12cov=$(echo "$Simp12line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 Dict12cov=$(echo "$Dict12line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
@@ -38,6 +43,7 @@ SimpTlcov=$(echo "$SimpTlalocan" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc 
 DictTlcov=$(echo "$DictTlalocan" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 bibleSJGZcov=$(echo "$bibleSJGZ" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 TichaPostcov=$(echo "$TichaPost" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+Allcov=$(echo "$All" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 
 Simp12toks=$(echo "$Simp12line" | cut -f2 | sed 's/.*\///' )
 Dict12toks=$(echo "$Dict12line" | cut -f2 | sed 's/.*\///' )
@@ -48,6 +54,7 @@ SimpTltoks=$(echo "$SimpTlalocan" | cut -f2 | sed 's/.*\///' )
 DictTltoks=$(echo "$DictTlalocan" | cut -f2 | sed 's/.*\///' )
 bibleSJGZtoks=$(echo "$bibleSJGZ" | cut -f2 | sed 's/.*\///' )
 TichaPosttoks=$(echo "$TichaPost" | cut -f2 | sed 's/.*\///' )
+Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
 
 
 #echo $(bc -l <<< "scale=2; $Dict12cov*100")
@@ -62,3 +69,5 @@ echo "        Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $S
 echo "         & Dictionary & $DictTltoks & $(printf %.2f $DictTlcov) \\\\"
 echo "        Ticha post 2020-07-17 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
 echo "        SJGZ Bible & SJGZ & $bibleSJGZtoks & $(printf %.2f $bibleSJGZcov) \\\\"
+echo "    \midrule"
+echo "        SLQZ total & mixed & $Alltoks & $(printf %.2f $Allcov) \\\\"
