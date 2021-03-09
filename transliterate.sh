@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 
+TRANSLITERATOR_SRC=../apertium-zab/.deps/zab@Simp-zab@Dict.hfst
 TRANSLITERATOR=../apertium-zab/zab.Simp-Dict.hfst
+
+hfst-fst2fst -O $TRANSLITERATOR_SRC -o $TRANSLITERATOR
 
 CORPORA="./BxTP/BxTP@Simp.1-2.txt"
 
