@@ -70,7 +70,7 @@ Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
 
 echo "        development & \emph{Blal xte Tiu Pamyël} 1-2 & Simple & $Simp12toks & $(printf %.2f $Simp12cov) \\\\"
 echo "         & & Phonemic & $Dict12toks & $(printf %.2f $Dict12cov) \\\\\\midrule"
-echo "        test & \emph{Blal xte Tiu Pamyël} 3-6 & Simple & $Simp37toks & $(printf %.2f $Simp37cov) \\\\"
+echo "        test & \emph{Blal xte Tiu Pamyël} 3-7 & Simple & $Simp37toks & $(printf %.2f $Simp37cov) \\\\"
 echo "        & \emph{Blal xte Tiu Pamyël} 3-4 & Phonemic & $Dict36toks & $(printf %.2f $Dict36cov) \\\\"
 echo "        & Felipe H. Lopez poetry & Simple & $FHLtoks & $(printf %.2f $FHLcov) \\\\"
 echo "        & Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
