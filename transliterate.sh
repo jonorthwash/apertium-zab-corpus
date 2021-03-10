@@ -22,7 +22,7 @@ for CORPUS in $CORPORA; do
 	DICT=$(echo $CORPUS | sed 's/Simp/Dict/');
 
 #'s/([aeiouë])h([^aáàeéèiíìoóòuúùë])/\1\2/g'
-	cat $DICT | sed -r 's/([aeiouë])h/\1/ig' | sed "s|[\'ʼ:꞉]||g" | sed -re 's/[áà]/a/g;s/[éè]/e/g;s/[íì]/i/g;s/[óò]/o/g;s/[úù]/u/g' | sed -re 's/a+/a/g;s/e+/e/g;s/i+/i/g;s/o+/o/g;s/u+/u/g;s/l+/l/g;s/m+/m/g;s/n+/n/g;' > $DICTSIMP
+	cat $DICT | sed -r 's/([aeiouë])h/\1/ig' | sed "s|[\'ʼ:꞉-]||g" | sed -re 's/[áà]/a/g;s/[éè]/e/g;s/[íì]/i/g;s/[óò]/o/g;s/[úù]/u/g' | sed -re 's/a+/a/g;s/e+/e/g;s/i+/i/g;s/o+/o/g;s/u+/u/g;s/l+/l/g;s/m+/m/g;s/n+/n/g;' > $DICTSIMP
 
 	apertium-eval-translator-line -r $CORPUS -t $DICTSIMP
 done;
