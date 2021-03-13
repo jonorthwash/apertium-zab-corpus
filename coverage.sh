@@ -2,9 +2,12 @@
 
 cat BxTP/BxTP@Simp.1.txt BxTP/BxTP@Simp.2.txt > BxTP/BxTP@Simp.1-2.txt
 cat BxTP/BxTP@Dict.1.txt BxTP/BxTP@Dict.2.txt > BxTP/BxTP@Dict.1-2.txt
+cat BxTP/BxTP@Simp.3.txt BxTP/BxTP@Simp.4.txt > BxTP/BxTP@Simp.3-4.txt
+cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt > BxTP/BxTP@Dict.3-4.txt
 cat BxTP/BxTP@Simp.3.txt BxTP/BxTP@Simp.4.txt BxTP/BxTP@Simp.5.txt BxTP/BxTP@Simp.6.txt BxTP/BxTP@Simp.7.txt > BxTP/BxTP@Simp.3-7.txt
 cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt BxTP/BxTP@Dict.5.txt BxTP/BxTP@Dict.6.txt > BxTP/BxTP@Dict.3-6.txt
-rm FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt
+
+rm FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt */*Simp-Dict* */*Dict-Simp*
 cat FHL-poetry/*.txt > FHL-poetry/FHL-poetry.all.txt
 cat Tlalocan/*@Simp* > Tlalocan/Tlalocan@Simp.all.txt
 cat Tlalocan/*@Dict* > Tlalocan/Tlalocan@Dict.all.txt
@@ -21,6 +24,7 @@ coverage-hfst Tlalocan/Tlalocan@Simp.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst misc/niny\ bac.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Simp.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Dict.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst ALL.txt ../apertium-zab/zab.automorf.hfst
@@ -34,6 +38,7 @@ SimpTlalocan=$(grep 'Tlalocan@Simp.all.txt' history.log | tail -n1)
 DictTlalocan=$(grep 'Tlalocan@Dict.all.txt' history.log | tail -n1)
 bibleSJGZ=$(grep 'SJGZ.bible.txt' history.log | tail -n1)
 TichaPost=$(grep '2020-07-17.txt' history.log | tail -n1)
+NinyBac=$(grep 'niny bac.txt' history.log | tail -n1)
 UDHRSimp=$(grep 'udhr@Simp.txt' history.log | tail -n1)
 UDHRDict=$(grep 'udhr@Dict.txt' history.log | tail -n1)
 All=$(grep 'ALL.txt' history.log | tail -n1)
@@ -47,6 +52,7 @@ SimpTlcov=$(echo "$SimpTlalocan" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc 
 DictTlcov=$(echo "$DictTlalocan" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 bibleSJGZcov=$(echo "$bibleSJGZ" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 TichaPostcov=$(echo "$TichaPost" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+NinyBaccov=$(echo "$NinyBac" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 UDHRSimpcov=$(echo "$UDHRSimp" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 UDHRDictcov=$(echo "$UDHRDict" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 Allcov=$(echo "$All" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
@@ -60,6 +66,7 @@ SimpTltoks=$(echo "$SimpTlalocan" | cut -f2 | sed 's/.*\///' )
 DictTltoks=$(echo "$DictTlalocan" | cut -f2 | sed 's/.*\///' )
 bibleSJGZtoks=$(echo "$bibleSJGZ" | cut -f2 | sed 's/.*\///' )
 TichaPosttoks=$(echo "$TichaPost" | cut -f2 | sed 's/.*\///' )
+NinyBaktoks=$(echo "$NinyBac" | cut -f2 | sed 's/.*\///' )
 UDHRSimptoks=$(echo "$UDHRSimp" | cut -f2 | sed 's/.*\///' )
 UDHRDicttoks=$(echo "$UDHRDict" | cut -f2 | sed 's/.*\///' )
 Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
@@ -70,11 +77,12 @@ Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
 
 echo "        development & \emph{Blal xte Tiu Pamyël} 1-2 & Simple & $Simp12toks & $(printf %.2f $Simp12cov) \\\\"
 echo "         & & Phonemic & $Dict12toks & $(printf %.2f $Dict12cov) \\\\\\midrule"
-echo "        test & \emph{Blal xte Tiu Pamyël} 3-7 & Simple & $Simp37toks & $(printf %.2f $Simp37cov) \\\\"
+echo "        testing & \emph{Blal xte Tiu Pamyël} 3-7 & Simple & $Simp37toks & $(printf %.2f $Simp37cov) \\\\"
 echo "        & \emph{Blal xte Tiu Pamyël} 3-4 & Phonemic & $Dict36toks & $(printf %.2f $Dict36cov) \\\\"
 echo "        & Felipe H. Lopez poetry & Simple & $FHLtoks & $(printf %.2f $FHLcov) \\\\"
 echo "        & Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
 echo "        & & Tentative & $DictTltoks & $(printf %.2f $DictTlcov) \\\\"
+echo "        & Niny Bac & Simple & $NinyBactoks & $(printf %.2f $NinyBaccov) \\\\"
 echo "        & Ticha post 2020-07-17 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
 echo "        & UDHR (9 articles) & Simple & $UDHRSimptoks & $(printf %.2f $UDHRSimpcov) \\\\"
 echo "        & UDHR (complete) & Phonemic & $UDHRDicttoks & $(printf %.2f $UDHRDictcov) \\\\"

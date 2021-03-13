@@ -8,7 +8,7 @@ TRANSLITERATOR_DS=../apertium-zab/zab.Dict-Simp.hfst
 hfst-fst2fst -O $TRANSLITERATOR_SD_SRC -o $TRANSLITERATOR_SD
 hfst-fst2fst -O $TRANSLITERATOR_DS_SRC -o $TRANSLITERATOR_DS
 
-CORPORA="./BxTP/BxTP@Simp.1-2.txt ./Tlalocan/Tlalocan@Simp.all.txt"
+CORPORA="./BxTP/BxTP@Simp.1-2.txt ./BxTP/BxTP@Simp.3-4.txt ./Tlalocan/Tlalocan@Simp.all.txt"
 
 declare -A RESULTS
 
@@ -46,4 +46,5 @@ done;
 
 echo "           D-SS   D-S   S-D"
 echo BxTP 1-2: ${RESULTS["BxTP1-2-DSS"]}  ${RESULTS["BxTP1-2-DS"]}	 ${RESULTS["BxTP1-2-SD"]}
+echo BxTP 1-2: ${RESULTS["BxTP3-4-DSS"]}  ${RESULTS["BxTP3-4-DS"]}	 ${RESULTS["BxTP3-4-SD"]}
 echo Tlalocan: ${RESULTS["Tlalocanall-DSS"]}  ${RESULTS["Tlalocanall-DS"]}  ${RESULTS["Tlalocanall-SD"]}
