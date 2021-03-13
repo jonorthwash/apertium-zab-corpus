@@ -46,5 +46,5 @@ done;
 
 echo "           D-SS   D-S   S-D"
 echo BxTP 1-2: ${RESULTS["BxTP1-2-DSS"]}  ${RESULTS["BxTP1-2-DS"]}	 ${RESULTS["BxTP1-2-SD"]}
-echo BxTP 1-2: ${RESULTS["BxTP3-4-DSS"]}  ${RESULTS["BxTP3-4-DS"]}	 ${RESULTS["BxTP3-4-SD"]}
+echo BxTP 3-4: ${RESULTS["BxTP3-4-DSS"]}  ${RESULTS["BxTP3-4-DS"]}	 ${RESULTS["BxTP3-4-SD"]}
 echo Tlalocan: ${RESULTS["Tlalocanall-DSS"]}  ${RESULTS["Tlalocanall-DS"]}  ${RESULTS["Tlalocanall-SD"]}
