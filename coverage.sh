@@ -24,7 +24,7 @@ coverage-hfst Tlalocan/Tlalocan@Simp.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
-coverage-hfst misc/niny\ bac.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst misc/ninybac.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Simp.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Dict.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst ALL.txt ../apertium-zab/zab.automorf.hfst
