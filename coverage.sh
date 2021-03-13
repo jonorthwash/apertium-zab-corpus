@@ -13,7 +13,7 @@ cat Tlalocan/*@Simp* > Tlalocan/Tlalocan@Simp.all.txt
 cat Tlalocan/*@Dict* > Tlalocan/Tlalocan@Dict.all.txt
 
 rm ALL.txt
-cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict.txt > ALL.txt
+cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt misc/ninybac.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict.txt > ALL.txt
 
 coverage-hfst BxTP/BxTP@Simp.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Dict.1-2.txt ../apertium-zab/zab.automorf.hfst
@@ -38,7 +38,7 @@ SimpTlalocan=$(grep 'Tlalocan@Simp.all.txt' history.log | tail -n1)
 DictTlalocan=$(grep 'Tlalocan@Dict.all.txt' history.log | tail -n1)
 bibleSJGZ=$(grep 'SJGZ.bible.txt' history.log | tail -n1)
 TichaPost=$(grep '2020-07-17.txt' history.log | tail -n1)
-NinyBac=$(grep 'niny bac.txt' history.log | tail -n1)
+NinyBac=$(grep 'ninybac.txt' history.log | tail -n1)
 UDHRSimp=$(grep 'udhr@Simp.txt' history.log | tail -n1)
 UDHRDict=$(grep 'udhr@Dict.txt' history.log | tail -n1)
 All=$(grep 'ALL.txt' history.log | tail -n1)
@@ -66,7 +66,7 @@ SimpTltoks=$(echo "$SimpTlalocan" | cut -f2 | sed 's/.*\///' )
 DictTltoks=$(echo "$DictTlalocan" | cut -f2 | sed 's/.*\///' )
 bibleSJGZtoks=$(echo "$bibleSJGZ" | cut -f2 | sed 's/.*\///' )
 TichaPosttoks=$(echo "$TichaPost" | cut -f2 | sed 's/.*\///' )
-NinyBaktoks=$(echo "$NinyBac" | cut -f2 | sed 's/.*\///' )
+NinyBactoks=$(echo "$NinyBac" | cut -f2 | sed 's/.*\///' )
 UDHRSimptoks=$(echo "$UDHRSimp" | cut -f2 | sed 's/.*\///' )
 UDHRDicttoks=$(echo "$UDHRDict" | cut -f2 | sed 's/.*\///' )
 Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
