@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 
-TRANSLITERATOR_SD_SRC=../apertium-zab/.deps/zab@Simp-zab@Dict.hfst
-TRANSLITERATOR_SD=../apertium-zab/zab.Simp-Dict.hfst
-TRANSLITERATOR_DS_SRC=../apertium-zab/.deps/zab@Dict-zab@Simp.hfst
-TRANSLITERATOR_DS=../apertium-zab/zab.Dict-Simp.hfst
-hfst-fst2fst -O $TRANSLITERATOR_SD_SRC -o $TRANSLITERATOR_SD
-hfst-fst2fst -O $TRANSLITERATOR_DS_SRC -o $TRANSLITERATOR_DS
+#TRANSLITERATOR_SD_SRC=../apertium-zab/.deps/zab@Simp-zab@Dict.hfst
+TRANSLITERATOR_SD=../apertium-zab/zab.zab@Simp-zab@Dict.hfst
+#TRANSLITERATOR_DS_SRC=../apertium-zab/.deps/zab@Dict-zab@Simp.hfst
+TRANSLITERATOR_DS=../apertium-zab/zab.zab@Dict-zab@Simp.hfst
+#hfst-fst2fst -O $TRANSLITERATOR_SD_SRC -o $TRANSLITERATOR_SD
+#hfst-fst2fst -O $TRANSLITERATOR_DS_SRC -o $TRANSLITERATOR_DS
 
 CORPORA="./BxTP/BxTP@Simp.1-2.txt ./BxTP/BxTP@Simp.3-4.txt ./Tlalocan/Tlalocan@Simp.all.txt"
 
