@@ -13,7 +13,7 @@ cat Tlalocan/*@Simp* > Tlalocan/Tlalocan@Simp.all.txt
 cat Tlalocan/*@Dict* > Tlalocan/Tlalocan@Dict.all.txt
 
 rm ALL.txt
-cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt misc/ninybac.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict.txt > ALL.txt
+cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt misc/ninybac.txt misc/liazachaa.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict.txt > ALL.txt
 
 coverage-hfst BxTP/BxTP@Simp.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Dict.1-2.txt ../apertium-zab/zab.automorf.hfst
@@ -25,6 +25,7 @@ coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst misc/ninybac.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst misc/liazachaa.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Simp.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Dict.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst ALL.txt ../apertium-zab/zab.automorf.hfst
@@ -39,6 +40,7 @@ DictTlalocan=$(grep 'Tlalocan@Dict.all.txt' history.log | tail -n1)
 bibleSJGZ=$(grep 'SJGZ.bible.txt' history.log | tail -n1)
 TichaPost=$(grep '2020-07-17.txt' history.log | tail -n1)
 NinyBac=$(grep 'ninybac.txt' history.log | tail -n1)
+LiazaChaa=$(grep 'liazachaa.txt' history.log | tail -n1)
 UDHRSimp=$(grep 'udhr@Simp.txt' history.log | tail -n1)
 UDHRDict=$(grep 'udhr@Dict.txt' history.log | tail -n1)
 All=$(grep 'ALL.txt' history.log | tail -n1)
@@ -53,6 +55,7 @@ DictTlcov=$(echo "$DictTlalocan" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc 
 bibleSJGZcov=$(echo "$bibleSJGZ" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 TichaPostcov=$(echo "$TichaPost" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 NinyBaccov=$(echo "$NinyBac" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+LiazaChaacov=$(echo "$LiazaChaa" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 UDHRSimpcov=$(echo "$UDHRSimp" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 UDHRDictcov=$(echo "$UDHRDict" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
 Allcov=$(echo "$All" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
@@ -67,6 +70,7 @@ DictTltoks=$(echo "$DictTlalocan" | cut -f2 | sed 's/.*\///' )
 bibleSJGZtoks=$(echo "$bibleSJGZ" | cut -f2 | sed 's/.*\///' )
 TichaPosttoks=$(echo "$TichaPost" | cut -f2 | sed 's/.*\///' )
 NinyBactoks=$(echo "$NinyBac" | cut -f2 | sed 's/.*\///' )
+LiazaChaatoks=$(echo "$LiazaChaa" | cut -f2 | sed 's/.*\///' )
 UDHRSimptoks=$(echo "$UDHRSimp" | cut -f2 | sed 's/.*\///' )
 UDHRDicttoks=$(echo "$UDHRDict" | cut -f2 | sed 's/.*\///' )
 Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
@@ -83,6 +87,7 @@ echo "        & Felipe H. Lopez poetry & Simple & $FHLtoks & $(printf %.2f $FHLc
 echo "        & Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
 echo "        & & Tentative & $DictTltoks & $(printf %.2f $DictTlcov) \\\\"
 echo "        & Niny Bac & Simple & $NinyBactoks & $(printf %.2f $NinyBaccov) \\\\"
+echo "        & Liaza Chaa & Simple & $LiazaChaatoks & $(printf %.2f $LiazaChaacov) \\\\"
 echo "        & Ticha post 2020-07-17 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
 echo "        & UDHR (9 articles) & Simple & $UDHRSimptoks & $(printf %.2f $UDHRSimpcov) \\\\"
 echo "        & UDHR (complete) & Phonemic & $UDHRDicttoks & $(printf %.2f $UDHRDictcov) \\\\"
