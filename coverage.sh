@@ -22,7 +22,7 @@ coverage-hfst BxTP/BxTP@Dict.3-6.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst FHL-poetry/FHL-poetry.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Simp.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
-coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst Bible/SJGZ.bible.txt ../apertium-zab/zab@SJGZ.automorf.hfst
 coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst misc/ninybac.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst misc/liazachaa.txt ../apertium-zab/zab.automorf.hfst
