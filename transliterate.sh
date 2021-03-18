@@ -12,6 +12,7 @@ CORPORA="./BxTP/BxTP@Simp.1-2.txt ./BxTP/BxTP@Simp.3-4.txt ./Tlalocan/Tlalocan@S
 
 declare -A RESULTS
 
+# Simp→Dict
 for CORPUS in $CORPORA; do
 	SIMPDICT=$(echo $CORPUS | sed 's/Simp/Simp-Dict/');
 	DICT=$(echo $CORPUS | sed 's/Simp/Dict/');
@@ -24,16 +25,19 @@ for CORPUS in $CORPORA; do
 done;
 
 
+# Dict→Simp
 for CORPUS in $CORPORA; do
 	DICTSIMP=$(echo $CORPUS | sed 's/Simp/Dict-Simp/');
 	DICTSIMPS=$(echo $CORPUS | sed 's/Simp/Dict-SimpS/');
 	DICT=$(echo $CORPUS | sed 's/Simp/Dict/');
 	CORPUSNAME=$(echo $CORPUS | sed -r 's/.*\/(.+)\.txt/\1/' | sed -e 's/\@Simp//;s/\.//g');
+	CORPUSlc=$(echo $CORPUS | sed -r 's/\.txt/_lc\.txt/');
 
+	# conversion of upper case to lower case is needed for evaluation because of HFST's bugs with case handling
+	cat $DICT | hfst-proc $TRANSLITERATOR_DS | perl -pe 's:\/.+?\$:\$:g' | hfst-proc -n -N1 $TRANSLITERATOR_DS | sed -r "s/ʼ/\'/g" | sed -r 's/꞉/:/g' | tr '[:upper:]' '[:lower:]' > $DICTSIMP
+	cat $CORPUS | tr '[:upper:]' '[:lower:]' > $CORPUSlc
 
-	cat $DICT | hfst-proc $TRANSLITERATOR_DS | perl -pe 's:\/.+?\$:\$:g' | hfst-proc -n -N1 $TRANSLITERATOR_DS | sed -r "s/ʼ/\'/g" | sed -r 's/꞉/:/g' > $DICTSIMP
-
-	RESULT=$(apertium-eval-translator-line -r $CORPUS -t $DICTSIMP 2> /dev/null);
+	RESULT=$(apertium-eval-translator-line -r $CORPUSlc -t $DICTSIMP 2> /dev/null);
 	RESULTS["$CORPUSNAME-DS"]=$(echo $RESULT | sed -r 's/.*WER\): ([0-9\.]+?) \%.*/\1/')
 
 #'s/([aeiouë])h([^aáàeéèiíìoóòuúùë])/\1\2/g'
