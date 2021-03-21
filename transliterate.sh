@@ -18,7 +18,8 @@ for CORPUS in $CORPORA; do
 	DICT=$(echo $CORPUS | sed 's/Simp/Dict/');
 	CORPUSNAME=$(echo $CORPUS | sed -r 's/.*\/(.+)\.txt/\1/' | sed -e 's/\@Simp//;s/\.//g');
 	
-	cat $CORPUS | hfst-proc $TRANSLITERATOR_SD | perl -pe 's:\/.+?\$:\$:g' | hfst-proc -n -N1 $TRANSLITERATOR_SD | sed -r "s/ʼ/\'/g" | sed -r 's/꞉/:/g' > $SIMPDICT
+	#cat $CORPUS | hfst-proc $TRANSLITERATOR_SD | perl -pe 's:\/.+?\$:\$:g' | hfst-proc -n -N1 $TRANSLITERATOR_SD | sed -r "s/ʼ/\'/g" | sed -r 's/꞉/:/g' > $SIMPDICT
+	cat $CORPUS | hfst-proc $TRANSLITERATOR_SD | perl -pe 's:\/.+?\$:\$:g' | hfst-proc -n -N1 $TRANSLITERATOR_SD > $SIMPDICT
 
 	RESULT=$(apertium-eval-translator-line -r $DICT -t $SIMPDICT 2> /dev/null);
 	RESULTS["$CORPUSNAME-SD"]=$(echo $RESULT | sed -r 's/.*WER\): ([0-9\.]+?) \%.*/\1/')
@@ -48,7 +49,26 @@ for CORPUS in $CORPORA; do
 
 done;
 
-echo "           D-SS   D-S   S-D"
-echo BxTP 1-2: ${RESULTS["BxTP1-2-DSS"]}  ${RESULTS["BxTP1-2-DS"]}	 ${RESULTS["BxTP1-2-SD"]}
-echo BxTP 3-4: ${RESULTS["BxTP3-4-DSS"]}  ${RESULTS["BxTP3-4-DS"]}	 ${RESULTS["BxTP3-4-SD"]}
+coverage-hfst BxTP/BxTP\@Dict.3-4.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst BxTP/BxTP\@Simp.3-4.txt ../apertium-zab/zab.automorf.hfst
+
+Simp12line=$(grep 'BxTP@Simp.1-2.txt' history.log | tail -n1)
+Dict12line=$(grep 'BxTP@Dict.1-2.txt' history.log | tail -n1)
+Simp34line=$(grep 'BxTP@Simp.3-4.txt' history.log | tail -n1)
+Dict34line=$(grep 'BxTP@Dict.3-4.txt' history.log | tail -n1)
+
+Simp12cov=$(echo "$Simp12line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+Dict12cov=$(echo "$Dict12line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+Simp34cov=$(echo "$Simp34line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+Dict34cov=$(echo "$Dict34line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
+
+Simp12toks=$(echo "$Simp12line" | cut -f2 | sed 's/.*\///' )
+Dict12toks=$(echo "$Dict12line" | cut -f2 | sed 's/.*\///' )
+Simp34toks=$(echo "$Simp34line" | cut -f2 | sed 's/.*\///' )
+Dict34toks=$(echo "$Dict34line" | cut -f2 | sed 's/.*\///' )
+
+
+echo "           D-SS   D-S   S-D   covS   tokensS  covD  tokensD"
+echo BxTP 1-2: ${RESULTS["BxTP1-2-DSS"]}  ${RESULTS["BxTP1-2-DS"]}	 ${RESULTS["BxTP1-2-SD"]} \> $(printf %.2f $Simp12cov)   $Simp12toks   $(printf %.2f $Dict12cov)   $Dict12toks
+echo BxTP 3-4: ${RESULTS["BxTP3-4-DSS"]}  ${RESULTS["BxTP3-4-DS"]}	 ${RESULTS["BxTP3-4-SD"]} \> $(printf %.2f $Simp34cov)   $Simp34toks   $(printf %.2f $Dict34cov)   $Dict34toks
 echo Tlalocan: ${RESULTS["Tlalocanall-DSS"]}  ${RESULTS["Tlalocanall-DS"]}  ${RESULTS["Tlalocanall-SD"]}
