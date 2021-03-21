@@ -1,24 +1,25 @@
 #!/bin/bash
 
 cat BxTP/BxTP@Simp.1.txt BxTP/BxTP@Simp.2.txt > BxTP/BxTP@Simp.1-2.txt
-cat BxTP/BxTP@Dict.1.txt BxTP/BxTP@Dict.2.txt > BxTP/BxTP@Dict.1-2.txt
+cat BxTP/BxTP@Dict.1.txt BxTP/BxTP@Dict.2.txt | sed -r 's/([Xxh])(:)/\1꞉/g' | sed -r "s/([aeiouë])(')/\1ʼ/g"> BxTP/BxTP@Dict.1-2.txt
 cat BxTP/BxTP@Simp.3.txt BxTP/BxTP@Simp.4.txt > BxTP/BxTP@Simp.3-4.txt
-cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt > BxTP/BxTP@Dict.3-4.txt
+cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt | sed -r 's/([Xxh])(:)/\1꞉/g' | sed -r "s/([aeiouë])(')/\1ʼ/g" > BxTP/BxTP@Dict.3-4.txt
 cat BxTP/BxTP@Simp.3.txt BxTP/BxTP@Simp.4.txt BxTP/BxTP@Simp.5.txt BxTP/BxTP@Simp.6.txt BxTP/BxTP@Simp.7.txt > BxTP/BxTP@Simp.3-7.txt
-cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt BxTP/BxTP@Dict.5.txt BxTP/BxTP@Dict.6.txt > BxTP/BxTP@Dict.3-6.txt
+#cat BxTP/BxTP@Dict.3.txt BxTP/BxTP@Dict.4.txt BxTP/BxTP@Dict.5.txt BxTP/BxTP@Dict.6.txt > BxTP/BxTP@Dict.3-6.txt
+cat UDHR/udhr@Dict.txt | sed -r 's/([Xxhaeiouë])(:)/\1꞉/g' | sed -r "s/([aeiouë])(')/\1ʼ/g" > UDHR/udhr@Dict_filtered.txt
 
-rm FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt */*Simp-Dict* */*Dict-Simp*
+rm FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt */*_lc.txt */*Simp-Dict* */*Dict-Simp*
 cat FHL-poetry/*.txt > FHL-poetry/FHL-poetry.all.txt
 cat Tlalocan/*@Simp* > Tlalocan/Tlalocan@Simp.all.txt
-cat Tlalocan/*@Dict* > Tlalocan/Tlalocan@Dict.all.txt
+cat Tlalocan/*@Dict* | sed -r 's/([Xxh])(:)/\1꞉/g' | sed -r "s/([aeiouë])(')/\1ʼ/g" > Tlalocan/Tlalocan@Dict.all.txt
 
 rm ALL.txt
-cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt misc/ninybac.txt misc/liazachaa.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict.txt > ALL.txt
+cat BxTP/BxTP@Simp.1-2.txt BxTP/BxTP@Dict.1-2.txt BxTP/BxTP@Simp.3-7.txt BxTP/BxTP@Dict.3-6.txt FHL-poetry/FHL-poetry.all.txt Tlalocan/Tlalocan@Dict.all.txt Tlalocan/Tlalocan@Simp.all.txt Ticha/2020-07-17.txt misc/ninybac.txt misc/liazachaa.txt UDHR/udhr@Simp.txt UDHR/udhr@Dict_filtered.txt > ALL.txt
 
 coverage-hfst BxTP/BxTP@Simp.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Dict.1-2.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst BxTP/BxTP@Simp.3-7.txt ../apertium-zab/zab.automorf.hfst
-coverage-hfst BxTP/BxTP@Dict.3-6.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst BxTP/BxTP@Dict.3-4.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst FHL-poetry/FHL-poetry.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Simp.all.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst Tlalocan/Tlalocan@Dict.all.txt ../apertium-zab/zab.automorf.hfst
@@ -27,13 +28,13 @@ coverage-hfst Ticha/2020-07-17.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst misc/ninybac.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst misc/liazachaa.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst UDHR/udhr@Simp.txt ../apertium-zab/zab.automorf.hfst
-coverage-hfst UDHR/udhr@Dict.txt ../apertium-zab/zab.automorf.hfst
+coverage-hfst UDHR/udhr@Dict_filtered.txt ../apertium-zab/zab.automorf.hfst
 coverage-hfst ALL.txt ../apertium-zab/zab.automorf.hfst
 
 Simp12line=$(grep 'BxTP@Simp.1-2.txt' history.log | tail -n1)
 Dict12line=$(grep 'BxTP@Dict.1-2.txt' history.log | tail -n1)
 Simp37line=$(grep 'BxTP@Simp.3-7.txt' history.log | tail -n1)
-Dict36line=$(grep 'BxTP@Dict.3-6.txt' history.log | tail -n1)
+Dict36line=$(grep 'BxTP@Dict.3-4.txt' history.log | tail -n1)
 FHLline=$(grep 'FHL-poetry.all.txt' history.log | tail -n1)
 SimpTlalocan=$(grep 'Tlalocan@Simp.all.txt' history.log | tail -n1)
 DictTlalocan=$(grep 'Tlalocan@Dict.all.txt' history.log | tail -n1)
@@ -42,7 +43,7 @@ TichaPost=$(grep '2020-07-17.txt' history.log | tail -n1)
 NinyBac=$(grep 'ninybac.txt' history.log | tail -n1)
 LiazaChaa=$(grep 'liazachaa.txt' history.log | tail -n1)
 UDHRSimp=$(grep 'udhr@Simp.txt' history.log | tail -n1)
-UDHRDict=$(grep 'udhr@Dict.txt' history.log | tail -n1)
+UDHRDict=$(grep 'udhr@Dict_filtered.txt' history.log | tail -n1)
 All=$(grep 'ALL.txt' history.log | tail -n1)
 
 Simp12cov=$(echo "$Simp12line" | cut -f3 | sed 's/~//' | sed 's/$/*100/' | bc )
@@ -79,18 +80,18 @@ Alltoks=$(echo "$All" | cut -f2 | sed 's/.*\///' )
 #echo $(bc -l <<< "scale=2; $Dict12cov*100")
 #echo $(echo 'scale=2;'"$Dict12cov * 100.00"| bc -l)
 
-echo "        development & \emph{Blal xte Tiu Pamyël} 1-2 & Simple & $Simp12toks & $(printf %.2f $Simp12cov) \\\\"
+echo "        development & \emph{Blal xte Tiu Pamyël} 1-2\\footnoteref{fn:munroetal} & Simple & $Simp12toks & $(printf %.2f $Simp12cov) \\\\"
 echo "         & & Phonemic & $Dict12toks & $(printf %.2f $Dict12cov) \\\\\\midrule"
 echo "        testing & \emph{Blal xte Tiu Pamyël} 3-7 & Simple & $Simp37toks & $(printf %.2f $Simp37cov) \\\\"
 echo "        & \emph{Blal xte Tiu Pamyël} 3-4 & Phonemic & $Dict36toks & $(printf %.2f $Dict36cov) \\\\"
-echo "        & Felipe H. Lopez poetry & Simple & $FHLtoks & $(printf %.2f $FHLcov) \\\\"
-echo "        & Tlalocan poems \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
+echo "        & Felipe H. Lopez poetry\\footnotemark{} & Simple & $FHLtoks & $(printf %.2f $FHLcov) \\\\"
+echo "        & Tlalocan poems\\footnotemark{} \\& story & Simple & $SimpTltoks & $(printf %.2f $SimpTlcov) \\\\"
 echo "        & & Tentative & $DictTltoks & $(printf %.2f $DictTlcov) \\\\"
-echo "        & Niny Bac & Simple & $NinyBactoks & $(printf %.2f $NinyBaccov) \\\\"
-echo "        & Liaza Chaa & Simple & $LiazaChaatoks & $(printf %.2f $LiazaChaacov) \\\\"
-echo "        & Ticha post 2020-07-17 & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
-echo "        & UDHR (9 articles) & Simple & $UDHRSimptoks & $(printf %.2f $UDHRSimpcov) \\\\"
-echo "        & UDHR (complete) & Phonemic & $UDHRDicttoks & $(printf %.2f $UDHRDictcov) \\\\"
-echo "        & SJGZ Bible & SJGZ & $bibleSJGZtoks & $(printf %.2f $bibleSJGZcov) \\\\"
+echo "        & Niny Bac\\footnoteref{fn:munroetal} & Simple & $NinyBactoks & $(printf %.2f $NinyBaccov) \\\\"
+echo "        & Liaza Chaa\\footnotemark{} & Simple & $LiazaChaatoks & $(printf %.2f $LiazaChaacov) \\\\"
+echo "        & Ticha post 2020-07-17\\footnotemark{} & Simple & $TichaPosttoks & $(printf %.2f $TichaPostcov) \\\\"
+echo "        & UDHR (9 articles)\\footnoteref{fn:munroetal} & Simple & $UDHRSimptoks & $(printf %.2f $UDHRSimpcov) \\\\"
+echo "        & UDHR (complete)\\footnotemark{} & Phonemic & $UDHRDicttoks & $(printf %.2f $UDHRDictcov) \\\\"
+echo "        % & SJGZ Bible & SJGZ & $bibleSJGZtoks & $(printf %.2f $bibleSJGZcov) \\\\"
 echo "    \midrule"
 echo "        & SLQZ total & mixed & $Alltoks & $(printf %.2f $Allcov) \\\\"
