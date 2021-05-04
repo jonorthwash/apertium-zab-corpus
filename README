@@ -1,0 +1,27 @@
+## Corpus of Western Tlacolula Valley Zapotec
+
+This repository contains texts in Western Tlacolula Valley Zapotec, specifically the following varieties:
+- SLQZ - San Lucas Quiaviní Zapotec
+- SJGZ - San Juan Guelavía Zapotec
+
+The texts are sorted into the following collections:
+- [Bible](Bible/) - A Bible (New Testament only) translation in SJGZ.
+- [BxTP](BxTP/) - Blal xte Tiu Pamyël, a story in SLQZ.
+- [FHL-poetry](FHL-poetry/) - The poetry of Felipe H. Lopez, in SLQZ.
+- [misc](misc/) - Two stories in SLQZ: Niny Bac and Liaza Chaa.
+- [Ticha](Ticha/) - A blog post in SLQZ from the Ticha blog.
+- [Tlalocan](Tlalocan/) - Texts in SLQZ.
+- [UDHR](UDHR/) - The Universal Declaration of Human Rights in SLQZ.
+
+
+The texts are from the following sources with the following licenses:
+- [Bible](Bible/) - [bible.is](https://live.bible.is/bible/ZABTBL/)
+- [BxTP](BxTP/) - [Munro et al. (2021).  _Cali Chiu_](https://oer.haverford.edu/cali-chiu/), [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+- [FHL-poetry](FHL-poetry/) - [Lopez and Lillehaugen (2018).  _Seven poems_](http://www.latinamericanliteraturetoday.org/en/2018/august/seven-poems-felipe-h-lopez), [Lopez and Lillehaugen (2017).  _Mam and Guepy: Two Valley Zapotec poems with translations_](https://doi.org/10.26824/lalr.22), [Felipe H. Lopez's blog](https://felipehlopez.weebly.com/).
+- [misc](misc/) - [Munro et al. (2021).  _Cali Chiu_](https://oer.haverford.edu/cali-chiu/), [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/); [Lopez (2018).  _Liaza chaa_](http://www.latinamericanliteraturetoday.org/en/2018/august/liaza-chaa-im-going-home-felipe-h-lopez)
+- [Ticha](Ticha/) - [Ticha blog](https://ticha.haverford.edu/updates/), [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- [Tlalocan](Tlalocan/) - [Chávez Peon and López Reyes (2009).  _Zidgyni zyala rnalaza liu ‘Vengo de la luz del amanecer, recordándote’.  Cuatro poemas y un cuento del zapoteco del Valle_](https://doi.org/10.19130/iifl.tlalocan.2009.199) 
+- [UDHR](UDHR/) - [OHCHR](https://www.ohchr.org/EN/UDHR/Pages/Language.aspx?LangID=ztu1)
+
+ 
+Among the SLQZ texts, at least two orthographies are represented, one simple and one phonemic.  An older variant of the phonemic orthography is used in UDHR.
