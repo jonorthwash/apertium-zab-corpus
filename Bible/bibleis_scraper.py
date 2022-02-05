@@ -332,7 +332,7 @@ if __name__ == "__main__":
     success_count = 0
     failures = []
     print(f"Scraping {args.lang} to {args.out}")
-    with open(args.out, "w") as f:
+    with open(args.out, "w", encoding="utf-8") as f:
         to_scrape = args.chapters or CHAPTERS
         for url in to_scrape:
             res = scrape(args.lang, parser, url)
