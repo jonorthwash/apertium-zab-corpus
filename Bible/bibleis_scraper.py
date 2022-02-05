@@ -54,6 +54,8 @@ def scrape(lang: str, parser: MyHTMLParser, url: str) -> Optional[str]:
             delay = 2**tries
             print(f"Waiting {delay} seconds...")
             time.sleep(delay)
+    if tries > 1:
+        print(f"Successfully scraped {url}")
     return text
 
 
